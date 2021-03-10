@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_213316) do
+ActiveRecord::Schema.define(version: 2021_03_10_034807) do
 
   create_table "goals", force: :cascade do |t|
     t.string "category"
@@ -23,24 +23,14 @@ ActiveRecord::Schema.define(version: 2021_03_08_213316) do
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
 
-  create_table "notes", force: :cascade do |t|
-    t.datetime "date"
-    t.string "entry"
-    t.integer "goal_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["goal_id"], name: "index_notes_on_goal_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "full_name"
-    t.string "email"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "goals", "users"
-  add_foreign_key "notes", "goals"
 end
